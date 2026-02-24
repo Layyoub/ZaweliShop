@@ -40,7 +40,7 @@
         "wikimedia/composer-merge-plugin": "^2.1"
     },
     "require-dev": {
-        "barryvdh/laravel-debugbar": "^3.13",
+        "barryvdh/laravel-debugbar": "^4.0",
         "fakerphp/faker": "^1.23",
         "kitloong/laravel-migrations-generator": "^7.0",
         "laravel/envoy": "^2.10",
