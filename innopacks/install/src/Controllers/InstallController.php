@@ -13,6 +13,7 @@ use App\Http\Controllers\Controller;
 use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 use InnoShop\Install\Libraries\Checker;
 use InnoShop\Install\Libraries\Creator;
 use InnoShop\Install\Libraries\Environment\EnvironmentChecker;
@@ -110,6 +111,11 @@ class InstallController extends Controller
 
             return json_success($outputLog->fetch());
         } catch (Exception $e) {
+            Log::error('Install complete failed', [
+                'message' => $e->getMessage(),
+                'trace'   => $e->getTraceAsString(),
+            ]);
+
             return json_fail($e->getMessage());
         }
     }

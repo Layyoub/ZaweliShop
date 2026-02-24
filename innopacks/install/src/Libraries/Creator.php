@@ -69,6 +69,7 @@ class Creator
         $scheme = is_secure() ? 'https' : 'http';
         $appUrl = $scheme.'://'.$_SERVER['HTTP_HOST'];
         $dbType = strtolower($data['db_type']);
+        $dbPrefix = $data['db_prefix'] ?? 'inno_';
 
         $envFileData = 'APP_NAME='.($data['app_name'] ?? 'InnoShop')."\n".
             'APP_ENV='.($data['environment'] ?? 'local')."\n".
@@ -79,7 +80,7 @@ class Creator
             'APP_LOCALE=en'."\n\n";
         if ($dbType == 'mysql') {
             $envFileData .= 'DB_CONNECTION=mysql'."\n".
-                'DB_PREFIX='.($data['db_prefix'] ?: 'inno_')."\n".
+                'DB_PREFIX='.$dbPrefix."\n".
                 'DB_HOST='.$data['db_hostname']."\n".
                 'DB_PORT='.$data['db_port']."\n".
                 'DB_DATABASE='.$data['db_name']."\n".
@@ -87,7 +88,7 @@ class Creator
                 'DB_PASSWORD=\''.$data['db_password']."'\n";
         } elseif ($dbType == 'sqlite') {
             $envFileData .= 'DB_CONNECTION=sqlite'."\n".
-                'DB_PREFIX='.($data['db_prefix'] ?: 'inno_')."\n";
+                'DB_PREFIX='.$dbPrefix."\n";
         }
 
         file_put_contents(base_path('.env'), $envFileData);

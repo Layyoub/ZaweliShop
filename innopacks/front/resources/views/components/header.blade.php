@@ -55,8 +55,14 @@
     <div class="container d-flex justify-content-between align-items-center">
       <div class="left">
         <h1 class="logo">
-          <a href="{{ front_route('home.index') }}">
-            <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" class="img-fluid">
+          <a href="{{ front_route('home.index') }}" class="d-flex align-items-center text-decoration-none">
+            <span
+              style="display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border-radius:50%;background:#ff007f;color:#fff;font-weight:700;font-size:24px;">
+              Z
+            </span>
+            <span class="ms-2 fw-bold" style="font-size:24px;color:#000;">
+              Zaweli Shop
+            </span>
           </a>
         </h1>
         <div class="menu">
@@ -154,8 +160,14 @@
     </div>
 
     <div class="logo">
-      <a href="{{ front_route('home.index') }}">
-        <img src="{{ image_origin(system_setting('front_logo', 'images/logo.svg')) }}" class="img-fluid">
+      <a href="{{ front_route('home.index') }}" class="d-flex align-items-center text-decoration-none">
+        <span
+          style="display:inline-flex;align-items:center;justify-content:center;width:32px;height:32px;border-radius:50%;background:#ff007f;color:#fff;font-weight:700;font-size:20px;">
+          Z
+        </span>
+        <span class="ms-2 fw-bold" style="font-size:20px;color:#000;">
+          Zaweli Shop
+        </span>
       </a>
     </div>
 

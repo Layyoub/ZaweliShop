@@ -2,6 +2,7 @@
 
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
@@ -29,14 +30,23 @@ return new class extends Migration
             });
         }
 
-        if (Schema::hasColumn('products', 'product_image_id')) {
-            Schema::dropColumns('products', 'product_image_id');
-        }
-        if (Schema::hasColumn('products', 'product_video_id')) {
-            Schema::dropColumns('products', 'product_video_id');
-        }
-        if (Schema::hasColumn('products', 'product_sku_id')) {
-            Schema::dropColumns('products', 'product_sku_id');
+        // Skip dropping legacy columns on SQLite to avoid ALTER TABLE index issues
+        if (DB::getDriverName() !== 'sqlite') {
+            if (Schema::hasColumn('products', 'product_image_id')) {
+                Schema::table('products', function (Blueprint $table) {
+                    $table->dropColumn('product_image_id');
+                });
+            }
+            if (Schema::hasColumn('products', 'product_video_id')) {
+                Schema::table('products', function (Blueprint $table) {
+                    $table->dropColumn('product_video_id');
+                });
+            }
+            if (Schema::hasColumn('products', 'product_sku_id')) {
+                Schema::table('products', function (Blueprint $table) {
+                    $table->dropColumn('product_sku_id');
+                });
+            }
         }
     }
 
